@@ -9,8 +9,10 @@ namespace Week_3
             Player player = new Player();
             Console.Clear();
             Console.CursorVisible = false;
-            while (true)
+            while (player.Alive)
             {
+                Console.SetCursorPosition(0, 0);
+                Console.Write("Lives: " + player.Lives);
                 Console.SetCursorPosition(player.Xpos, Console.WindowHeight);
                 Console.Write("P");
                 System.Threading.Thread.Sleep(100);
@@ -25,6 +27,10 @@ namespace Week_3
                         break;
                     case ConsoleKey.RightArrow:
                         player.Right();
+                        break;
+                    case ConsoleKey.Q:
+                        // To quit the game.
+                        player.Alive = false;
                         break;
                 }
             }
