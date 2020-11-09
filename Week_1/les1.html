@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="les1.css">
+ </head>
+
+<body>
+    <header id="navbar">
+            <div class="header-left">
+                <a href="index.html" class="wpfw">WPFW</a>
+            </div>
+            <div class="header-right">
+                <ul>
+                    <li><a class="nav-item" href="lijst" >BEROEPSTAKENLIJST</a></li>
+                    <div class="dropdown">
+                        <button class="nav-item dropbtn" onclick="myFunction()" href="literatuur">
+                            LITERATUUR
+                        </button>
+                        <div class="dropdown-content" id="myDropdown">
+                            <a href="#">MSDN</a>
+                            <a href="#">Tutorial Point</a>
+                        </div>
+                    </div>
+                    <li><a class="nav-item" href="rooster">ROOSTER</a></li>
+                </ul>
+            </div>
+        </header>
+    
+    <div class="les1">
+        <img src="img/mockup-code.png" alt="Picture of random coding" id="les1Banner">
+
+        <h1>Les 1; Frontend I</h1>
+        <h2>We gaan aan de slag met HTTP en CSS</h2>
+        <em>Posted on October 27, 2020</em>
+    </div>    
+    
+    <div class="table">
+        <p>HyperText Markup Language (afgekort HTML) is een op SGML gebaseerde opmaaktaal voor de specificatie van documenten, voornamelijk bedoeld voor het wereldwijde web. Het is de standaard opmaaktaal voor webpagina's. Documenten in HTML kunnen geopend en gelezen worden door een webbrowser om vervolgens als webpagina weergegeven te worden. HTML-documenten bevatten op de eerste plaats semantische structuur en tekstuele inhoud van een webpagina; de opmaak en visuele weergave kunnen er ook in worden beschreven, maar daar wordt tegenwoordig gewoonlijk CSS voor gebruikt. </p>
+
+        <h2>Wat zijn de escape sequences?</h2>
+        <table>
+            <tr>
+                <th>Named</th>
+                <th>Decimal</th>
+                <th>Hexadecimal</th>
+                <th>Result</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>&</td>
+                <td>&</td>
+                <td>&</td>
+                <td>&</td>
+                <td>Ampersand</td>
+            </tr>
+            <tr>
+                <td><</td>
+                <td><</td>
+                <td><</td>
+                <td><</td>
+                <td>Less Than</td>
+            </tr>
+            <tr>
+                <td>></td>
+                <td>></td>
+                <td>></td>
+                <td>></td>
+                <td>Greater Than</td>
+            </tr>
+            <tr>
+                <td>"</td>
+                <td>"</td>
+                <td>"</td>
+                <td>"</td>
+                <td>Double Quote</td>
+            </tr>
+            <tr>
+                <td>'</td>
+                <td>'</td>
+                <td>'</td>
+                <td>'</td>
+                <td>Single Quote</td>
+            </tr>
+            <tr>
+                <td>  </td>
+                <td>  </td>
+                <td>  </td>
+                <td>  </td>
+                <td>Non-Breaking Space</td>
+            </tr>
+            <tr>
+                <td>©</td>
+                <td>©</td>
+                <td>©</td>
+                <td>©</td>
+                <td>Copyright</td>
+            </tr>
+            <tr>
+                <td>®</td>
+                <td>®</td>
+                <td>®</td>
+                <td>®</td>
+                <td>Registered Trademark</td>
+            </tr>
+            <tr>
+                <td>†</td>
+                <td>†</td>
+                <td>†</td>
+                <td>†</td>
+                <td>Dagger</td>
+            </tr>
+            <tr>
+                <td>‡</td>
+                <td>‡</td>
+                <td>‡</td>
+                <td>‡</td>
+                <td>Double Dagger</td>
+            </tr>
+            <tr>
+                <td>™</td>
+                <td>™</td>
+                <td>™</td>
+                <td>™</td>
+                <td>Trademark</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="interaction">
+        <h1>Gebruikersinteractie</h1>
+        <p>HTML zelf voorziet alleen in zeer eenvoudige gebruikersinteractie</p>
+        <ul>
+            <li>het aanklikken van verwijzingen</li>
+            <li>het invullen van tekstvelden</li>
+            <li>het klikken in afbeeldingen</li>
+        </ul>
+
+    <div id="comment_section">
+        <div class="comment">
+            <div class="avatar">
+                <img src="https://avatars3.githubusercontent.com/u/15621524?s=88&u=60f715943a86e0d3dc8074ad8b4ff7e85937f60e&v=4"/>
+            </div>
+            <div class="message">
+                <div class="message_header">
+                    <p>Jan commented 48 minutes ago</p>
+                </div>
+                <div class="message_content">Wat een koele website!</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="new_comment">
+        <textarea id="new_comment_text" cols="50" rows="10"></textarea>
+        <br><br>
+        <button id="submit" onclick="addNewComment()">Commenteren</button>
+    </div>
+</div>
+
+    <footer>
+        <div class="footerImages">
+            <img src="img/instagram.png" alt="Instagram">
+            <img src="img/email.png" alt="E-mail">
+            <img src="img/facebook.png" alt="Facebook">
+            <img src="img/git.png" alt="Git">
+            <img src="img/twitter.png" alt="Twitter">
+        </div>
+
+        <div class="footerText">
+            <p>
+                <a href="https://www.dehaagsehogeschool.nl/">de Haagse Hogeschool</a> • 2020 • <a href="http://google.com/search?q=WPFW">WPFW.com</a>
+            </p>
+        </div>
+    </footer>
+
+<script src="main.js">
+</script>
+
+</body>
+</html>

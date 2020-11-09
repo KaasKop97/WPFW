@@ -1,0 +1,34 @@
+body    {
+}
+
+#roster_navigation  {
+    display: flex;
+    margin-top: 20px;
+}
+
+.roster_margin  {
+    margin-left: 10px;
+}
+
+#roster {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#roster_management  {
+    max-width: 20%;
+}
+
+#selection  {
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 1000px)   {
+    #roster_management  {
+        max-width: 80%;
+    }
+}

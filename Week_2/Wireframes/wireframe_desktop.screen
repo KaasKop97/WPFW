@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:WidgetGroup" id="17" x="144" y="160" height="889" measuredWidth="1105" measuredHeight="889">
+    <widgets xsi:type="model:Browser" id="1" width="1105" height="889" text="Firefox&#xA;https://haagserooster.nl" measuredWidth="1105" measuredHeight="889">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Image" id="3" x="26" y="64" width="71" height="63" measuredWidth="71" measuredHeight="63"/>
+    <widgets xsi:type="model:HLine" id="6" y="141" width="1105" measuredWidth="1105" measuredHeight="6"/>
+    <widgets xsi:type="model:LinkBar" id="9" x="128" y="83" measuredWidth="4" measuredHeight="25">
+      <font/>
+      <items x="0" y="0" width="3" height="25"/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Table" id="10" x="189" y="368" width="1036" height="417" text="Tijd, Maandag, Dinsdag, Woensdag, Donderdag, Vrijdag&#xA;09:00, Lesnaam\nLeeraarnaam\nLokaal,,, Lesnaam\nLeeraarnaam\nLokaal&#xA;10:00&#xA;11:00&#xA;12:00,,Lesnaam\nLeeraarnaam\nLokaal&#xA;13:00&#xA;14:00&#xA;15:00,Lesnaam\nLeeraarnaam\nLokaal,,,,Lesnaam\nLeeraarnaam\nLokaal&#xA;16:00&#xA;17:00&#xA;18:00&#xA;19:00&#xA;20:00" measuredWidth="1036" measuredHeight="417" alternative="#eee">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="12" x="222" y="315" width="65" height="37" text="Week 53" measuredWidth="65" measuredHeight="37">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Placeholder" id="13" x="293" y="315" text=">" measuredWidth="28" measuredHeight="37"/>
+  <widgets xsi:type="model:Placeholder" id="14" x="189" y="315" text="&lt;" measuredWidth="28" measuredHeight="37"/>
+  <widgets xsi:type="model:Note" id="15" y="192" width="137" height="81" text="De huidige klas wordt opgehaald vanuit het studentenregister.&#xA;" measuredWidth="137" measuredHeight="81">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Arrow" id="16" x="80" y="282" width="98" height="87" measuredWidth="98" measuredHeight="87"/>
+  <widgets xsi:type="model:Arrow" id="19" x="178" y="128" width="126" height="178" measuredWidth="126" measuredHeight="178"/>
+  <widgets xsi:type="model:Note" id="20" x="80" y="64" width="143" height="58" text="Hiermee kan je door de weken heen kijken&#xA;" measuredWidth="143" measuredHeight="58">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="27" x="1032" y="235" text="Ingelogd als &lt;studentnummer>&#xA;Log uit" measuredWidth="202" measuredHeight="48">
+    <font/>
+    <items x="0" y="0" width="201" height="24" text="Ingelogd als &lt;studentnummer>"/>
+    <items x="0" y="25" width="201" height="23" text="Log uit"/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="36" x="377" y="904" text="Breidt selectie uit" measuredWidth="117" measuredHeight="27">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="38" x="225" y="904" text="Voeg rooster toe" measuredWidth="113" measuredHeight="27">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Arrow" id="40" x="416" y="930" width="65" height="111" measuredWidth="65" measuredHeight="111" left="false" right="true"/>
+  <widgets xsi:type="model:Note" id="41" x="384" y="1040" width="265" height="83" text="Als je hierop klikt, opent een modal waarin je kan zoeken op klassen en eventueel toevoegen aan je overzicht en vergelijken" measuredWidth="265" measuredHeight="83">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="44" x="222" y="822" measuredWidth="120" measuredHeight="73">
+    <widgets xsi:type="model:Checkbox" id="33" text="H-2-SE.1" measuredWidth="69" measuredHeight="25" selected="true">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Checkbox" id="39" y="24" text="H-2-SE.5" measuredWidth="69" measuredHeight="25">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Checkbox" id="42" y="48" text="N. van Antwerpen" measuredWidth="120" measuredHeight="25">
+      <font/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Label" id="45" x="222" y="798" text="Roosters" measuredWidth="55" measuredHeight="25">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font size="12px"/>
+</model:Screen>

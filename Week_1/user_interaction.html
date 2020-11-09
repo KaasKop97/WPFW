@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #comment_section {
+            width: 30%;
+        }
+
+        .comment {
+            border: black 1px;
+            border-style: solid;
+            border-radius: 10px;
+            display: flex;
+        }
+
+        .avatar {
+            margin-right: 5%;
+        }
+
+        .message {
+            width: 70%;
+            height: 100%;
+        }
+
+        .message_header {
+            background-color: #FF0011;
+            width: 100%;
+            padding: 1px;
+        }
+
+        .message_content {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Gebruikersinteractie</h1>
+<p>HTML zelf voorziet alleen in zeer eenvoudige gebruikersinteractie</p>
+<ul>
+    <li>het aanklikken van verwijzingen</li>
+    <li>het invullen van tekstvelden</li>
+    <li>het klikken in afbeeldingen</li>
+</ul>
+<div id="comment_section">
+    <div class="comment">
+        <div class="avatar">
+            <img src="https://avatars3.githubusercontent.com/u/15621524?s=88&u=60f715943a86e0d3dc8074ad8b4ff7e85937f60e&v=4"/>
+        </div>
+        <div class="message">
+            <div class="message_header">
+                <p>Jan commented 48 minutes ago</p>
+            </div>
+            <div class="message_content">Wat een koele website!</div>
+        </div>
+    </div>
+</div>
+<textarea id="new_comment" cols="50" rows="10"></textarea>
+<br/>
+<br/>
+<button id="submit" onclick="addNewComment()">Commenteren</button>
+<script>
+    function addNewComment() {
+        let comment = document.getElementById("new_comment");
+        let comment_section = document.getElementById("comment_section");
+
+        let new_comment = document.createElement("div");
+        new_comment.classList = "comment";
+        let avatar = document.createElement("img");
+        avatar.src = "https://avatars3.githubusercontent.com/u/15621524?s=88&u=60f715943a86e0d3dc8074ad8b4ff7e85937f60e&v=4"
+        let avatar_div = document.createElement("div");
+        avatar_div.classList = "avatar";
+        avatar_div.append(avatar);
+        new_comment.append(avatar_div);
+
+        let message = document.createElement("div");
+        message.classList = "message"
+
+        let message_header = document.createElement("div")
+        message_header.classList = "message_header";
+
+        let actual_header = document.createElement("p");
+        actual_header.innerText = "Jan commented " + Math.random() + " minutes ago"
+
+        message_header.append(actual_header)
+        message.append(message_header)
+        new_comment.append(message)
+
+        let message_content = document.createElement("div");
+        let actual_comment = document.createElement("p");
+        actual_comment.innerText = comment.value;
+        message.append(actual_comment)
+
+        new_comment.append(message_content);
+
+        comment_section.append(new_comment);
+
+    }
+</script>
+</body>
+</html>

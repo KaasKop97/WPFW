@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Master" id="1" x="206" y="13" width="466" height="884" measuredWidth="466" measuredHeight="884">
+    <screen xsi:type="model:WidgetGroup" href="assets/Android5/Devices/Nexus%206.screen#Nexus%206"/>
+    <overrides>
+      <widgets ref="1" width="466" height="884"/>
+      <widgets ref="7" width="420" height="740"/>
+      <widgets ref="129" y="78" width="418"/>
+      <widgets ref="130" width="418"/>
+      <widgets ref="132" x="316"/>
+      <widgets ref="133" x="334"/>
+      <widgets ref="134" x="354"/>
+      <widgets ref="135" x="372"/>
+      <widgets ref="77" y="769" width="420"/>
+      <widgets ref="78" width="420"/>
+      <widgets ref="79" x="61"/>
+      <widgets ref="81" x="186"/>
+      <widgets ref="83" x="311"/>
+    </overrides>
+  </widgets>
+  <widgets xsi:type="model:Table" id="2" x="247" y="272" width="377" text="Tijd, Maandag&#xA;09:00,Lesnaam\nLeeraarnaam\nLokaal&#xA;10:00&#xA;11:00&#xA;12:00&#xA;13:00&#xA;14:00&#xA;15:00&#xA;16:00,Lesnaam\nLeeraarnaam\nLokaal&#xA;17:00&#xA;18:00&#xA;19:00&#xA;20:00&#xA;" measuredWidth="377" measuredHeight="465" alternative="#eee">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:HLine" id="3" x="229" y="208" width="410" measuredWidth="410" measuredHeight="6"/>
+  <widgets xsi:type="model:Image" id="4" x="239" y="128" width="74" height="64" measuredWidth="74" measuredHeight="64"/>
+  <widgets xsi:type="model:WidgetGroup" id="11" x="440" y="232" measuredWidth="184" measuredHeight="31">
+    <widgets xsi:type="model:Button" id="7" x="49" text="Week 51" measuredWidth="77" measuredHeight="31">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Placeholder" id="9" x="136" y="1" width="48" height="30" text=">" measuredWidth="48" measuredHeight="30"/>
+    <widgets xsi:type="model:Placeholder" id="10" y="1" width="41" height="30" text="&lt;" measuredWidth="41" measuredHeight="30"/>
+  </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="12" x="247" y="232" measuredWidth="182" measuredHeight="31">
+    <widgets xsi:type="model:Placeholder" id="14" x="134" width="48" height="30" text=">" measuredWidth="48" measuredHeight="30"/>
+    <widgets xsi:type="model:Placeholder" id="15" y="1" width="41" height="30" text="&lt;" measuredWidth="41" measuredHeight="30"/>
+    <widgets xsi:type="model:Button" id="16" x="46" text="Maandag" measuredWidth="84" measuredHeight="31">
+      <font/>
+    </widgets>
+  </widgets>
+  <widgets xsi:type="model:Arrow" id="17" x="101" y="175" width="139" height="58" measuredWidth="139" measuredHeight="58"/>
+  <widgets xsi:type="model:Note" id="18" y="78" width="161" height="97" text="Hiermee kan je door de week heen kijken naar je rooster voor die dag.&#xA;" measuredWidth="161" measuredHeight="97">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Arrow" id="19" x="639" y="233" width="106" height="87" measuredWidth="106" measuredHeight="87" left="false" right="true"/>
+  <widgets xsi:type="model:Note" id="20" x="744" y="304" width="144" height="72" text="Hiermee kan je door de weken heen scrolllen&#xA;" measuredWidth="144" measuredHeight="72">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Image" id="28" x="571" y="132" width="66" height="55" measuredWidth="66" measuredHeight="55" src="assets/.jpg"/>
+  <widgets xsi:type="model:Arrow" id="29" x="645" y="91" width="63" height="70" measuredWidth="63" measuredHeight="70" left="false" right="true" direction="bottom"/>
+  <widgets xsi:type="model:Note" id="30" x="711" y="59" width="210" height="102" text="Er was geen hamburger menuicoon in mijn programma, dus dan maar zo...&#xA;" measuredWidth="210" measuredHeight="102">
+    <font/>
+  </widgets>
+  <hRuler>
+    <guides position="157"/>
+  </hRuler>
+  <vRuler/>
+  <font name="Roboto" size="14px"/>
+</model:Screen>
