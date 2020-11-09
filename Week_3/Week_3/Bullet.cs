@@ -1,19 +1,21 @@
 using System;
 
-namespace Week_3{
-    public class Bullet{
-        public int Ypos;
+namespace Week_3
+{
+    public class Bullet
+    {
         public int Xpos;
+        public int Ypos;
 
-        public void move(){
-            while(Ypos>Console.WindowHeight){
-                Ypos += 1.5;
-            }
-        }
+        public int bulletVel = 1;
 
-        public Bullet(int Xpos, int Ypos){
+
+        public void Move()
+        {
+            Console.SetCursorPosition(Xpos, Ypos + bulletVel);
             Console.Write("|");
+            Ypos++;
+            bulletVel += 2;
         }
-        
     }
 }

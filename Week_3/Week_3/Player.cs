@@ -33,5 +33,16 @@ namespace Week_3
                 Alive = false;
             }
         }
+
+        public bool Overlap(int xPosEnemy, int yPosEnemy)
+        {
+            // Player is always at Y pos of window height so we can just check that.
+            if (xPosEnemy == Xpos && yPosEnemy == Console.WindowHeight)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
