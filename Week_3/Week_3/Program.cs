@@ -16,18 +16,16 @@ namespace Week_3
                 System.Threading.Thread.Sleep(100);
                 Console.SetCursorPosition(player.Xpos, Console.WindowHeight);
                 Console.Write(" ");
-                if (Console.KeyAvailable)
+                if (!Console.KeyAvailable) continue;
+                var key = Console.ReadKey(true).Key;
+                switch (key)
                 {
-                    ConsoleKey key = Console.ReadKey(true).Key;
-                    if (key.Equals(ConsoleKey.LeftArrow))
-                    {
+                    case ConsoleKey.LeftArrow:
                         player.Left();
-                    }
-
-                    if (key.Equals(ConsoleKey.RightArrow))
-                    {
+                        break;
+                    case ConsoleKey.RightArrow:
                         player.Right();
-                    }
+                        break;
                 }
             }
         }
