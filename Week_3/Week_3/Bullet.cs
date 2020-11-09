@@ -12,10 +12,22 @@ namespace Week_3
 
         public void Move()
         {
-            Console.SetCursorPosition(Xpos, Ypos + bulletVel);
+            Console.SetCursorPosition(Xpos, Ypos + 1);
             Console.Write("|");
             Ypos++;
-            bulletVel += 2;
+            Console.SetCursorPosition(Xpos, Ypos - 1);
+            Console.Write(" ");
+        }
+
+        public bool Overlap(int xPosPlayer, int yPosPlayer)
+        {
+            // Player is always at Y pos of window height so we can just check that.
+            if (xPosPlayer == Xpos && yPosPlayer == Console.WindowHeight)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

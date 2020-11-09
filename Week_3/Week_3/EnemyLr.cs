@@ -28,5 +28,10 @@ namespace Week_3
             Console.SetCursorPosition(Xpos - 1, Ypos - 1);
             Console.Write(" ");
         }
+        
+        public override void Shoot()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

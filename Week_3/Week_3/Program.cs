@@ -22,7 +22,6 @@ namespace Week_3
                     // We done here
                     Environment.Exit(0);
                 }
-
                 Console.SetCursorPosition(0, 0);
                 Console.Write("Lives: " + player.Lives);
                 Console.SetCursorPosition(player.Xpos, Console.WindowHeight);
@@ -35,10 +34,17 @@ namespace Week_3
                     enemies[currentEnemy].Move();
                     if (currentEnemy == 2)
                     {
-                        if (enemies[currentEnemy].Ypos > Console.WindowHeight)
+                        if (enemies[currentEnemy].Ypos == Console.WindowHeight / 2)
                         {
-                            if (enemies[currentEnemy].bullet.Xpos == player.Xpos &&
-                                enemies[currentEnemy].bullet.Ypos == Console.WindowHeight)
+                            enemies[currentEnemy].Shoot();
+                            enemies[currentEnemy].bullet.Xpos = enemies[currentEnemy].Xpos;
+                            enemies[currentEnemy].bullet.Ypos = enemies[currentEnemy].Ypos;
+                        }
+
+                        if (enemies[currentEnemy].Ypos > Console.WindowHeight / 2)
+                        {
+                            enemies[currentEnemy].bullet.Move();
+                            if (enemies[currentEnemy].bullet.Overlap(player.Xpos, Console.WindowHeight))
                             {
                                 // Hit by bullet.
                                 player.Hit();
@@ -57,7 +63,8 @@ namespace Week_3
                         // They successfully evaded the enemy
                         if (currentEnemy != enemies.Count)
                         {
-                            currentEnemy += 1;    
+                            currentEnemy += 1;
+                            Console.Clear();
                         }
                     }
                 }

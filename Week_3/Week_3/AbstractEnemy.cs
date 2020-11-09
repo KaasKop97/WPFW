@@ -13,9 +13,6 @@ namespace Week_3
 
         public abstract void Move();
 
-        public virtual void Shoot()
-        {
-            
-        }
+        public abstract void Shoot();
     }
 }
