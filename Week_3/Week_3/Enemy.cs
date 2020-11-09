@@ -8,7 +8,7 @@ namespace Week_3
         public int Xpos;
         public int Ypos;
         public void move(){
-
+            Ypos++;
         }
 
     }
@@ -42,7 +42,8 @@ namespace Week_3
         }
 
         public void shoot(){
-            
+            Bullet = new Bullet(Xpos, Ypos);
+            Bullet.move();
         }
     }
 }
