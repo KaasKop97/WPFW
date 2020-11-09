@@ -11,22 +11,22 @@ namespace Week_3
             Console.CursorVisible = false;
             while (true)
             {
-                Console.SetCursorPosition(player.x, Console.WindowHeight);
+                Console.SetCursorPosition(player.Xpos, Console.WindowHeight);
                 Console.Write("P");
                 System.Threading.Thread.Sleep(100);
-                Console.SetCursorPosition(player.x, Console.WindowHeight);
+                Console.SetCursorPosition(player.Xpos, Console.WindowHeight);
                 Console.Write(" ");
                 if (Console.KeyAvailable)
                 {
                     ConsoleKey key = Console.ReadKey(true).Key;
-                    if (key.Equals(ConsoleKey.J))
+                    if (key.Equals(ConsoleKey.LeftArrow))
                     {
-                        player.left();
+                        player.Left();
                     }
 
-                    if (key.Equals(ConsoleKey.K))
+                    if (key.Equals(ConsoleKey.RightArrow))
                     {
-                        player.right();
+                        player.Right();
                     }
                 }
             }

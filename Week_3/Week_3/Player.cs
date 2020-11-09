@@ -4,21 +4,21 @@ namespace Week_3
 {
     public class Player
     {
-        public int x;
+        public int Xpos;
 
         public Player()
         {
-            x = Console.WindowWidth / 2;
+            Xpos = Console.WindowWidth / 2;
         }
 
-        public void left()
+        public void Left()
         {
-            x = Math.Max(0, x - 1);
+            Xpos = Math.Max(0, Xpos - 1);
         }
 
-        public void right()
+        public void Right()
         {
-            x = Math.Min(Console.WindowWidth, x + 1);
+            Xpos = Math.Min(Console.WindowWidth, Xpos + 1);
         }
     }
 }
