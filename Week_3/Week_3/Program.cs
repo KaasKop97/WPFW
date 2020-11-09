@@ -8,7 +8,7 @@ namespace Week_3
         static void Main(string[] args)
         {
             Player player = new Player();
-            List<Enemy> enemies = new List<Enemy>();
+            List<AbstractEnemy> enemies = new List<AbstractEnemy>();
             Console.Clear();
             Console.CursorVisible = false;
             while (player.Alive)
