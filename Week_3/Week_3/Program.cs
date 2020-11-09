@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Week_3
 {
@@ -7,6 +8,7 @@ namespace Week_3
         static void Main(string[] args)
         {
             Player player = new Player();
+            List<Enemy> enemies = new List<Enemy>();
             Console.Clear();
             Console.CursorVisible = false;
             while (player.Alive)
