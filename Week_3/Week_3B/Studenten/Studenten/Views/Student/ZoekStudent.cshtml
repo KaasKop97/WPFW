@@ -4,8 +4,11 @@
 }
 
 <div class="text-center">
+    <p>De letter die opgezocht is: @ViewData["searchedLetter"]</p>
+    <ul class="list-group">
     @foreach (var student in @Model)
     {
-        <p>@student.StudentNaam</p>
+        <li class="list-group-item">@student.StudentNaam</li>
     }
+    </ul>
 </div>

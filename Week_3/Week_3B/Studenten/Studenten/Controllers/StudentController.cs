@@ -28,6 +28,7 @@ namespace Studenten.Controllers
         public IActionResult ZoekStudent(string id)
         {
             List<Student> tempStudentList = new List<Student>();
+            ViewData["searchedLetter"] = id;
             foreach (var student in studenten)
             {
                 // If the name starts with an upper or lower letter we find any.
