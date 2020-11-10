@@ -24,8 +24,17 @@ namespace Studenten.Controllers
             return View();
         }
 
-        public IActionResult Aantal() {
-            return "De naam " + StudentNaam + " komt " + student.count(StudentNaam) + " keer voor in de lijst.";
+        public IActionResult Aantal(string naam) {
+            int aantal;
+
+            foreach(var student in studenten)
+            {
+                if (Student.StudentNaam == naam) {
+                    aantal++;
+                }
+            }
+
+            return "De naam " + naam + " komt " + aantal + " keer voor in de lijst.";
         }
 
         // I call it an ID because then ASP.net handles it automatically.
