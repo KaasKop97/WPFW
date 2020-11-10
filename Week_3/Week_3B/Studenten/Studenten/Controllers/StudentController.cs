@@ -63,10 +63,10 @@ namespace Studenten.Controllers
         [HttpPost]
         public IActionResult CreateStudent(string studentNaam, int studentNummer, string studentMail)
         {
-            var newStudent = new Student();
-            newStudent.StudentMail = studentMail;
-            newStudent.StudentNaam = studentNaam;
-            newStudent.StudentNummer = studentNummer;
+            var newStudent = new Student
+            {
+                StudentMail = studentMail, StudentNaam = studentNaam, StudentNummer = studentNummer
+            };
             _studentenLijst.Add(newStudent);
             return RedirectToAction("Index");
         }
