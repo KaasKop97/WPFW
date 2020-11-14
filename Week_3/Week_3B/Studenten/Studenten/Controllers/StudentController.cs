@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Studenten.Models;
@@ -36,6 +37,26 @@ namespace Studenten.Controllers
             }
         
             return "De naam " + naam + " komt " + aantal + " keer voor in de lijst.";
+        }
+
+        public IActionResult Email(int id)
+        {
+            // id is the students id
+            foreach (var student in _studentenLijst)
+            {
+                Console.WriteLine(student.StudentNummer);
+                Console.WriteLine(id);
+                if (student.StudentNummer == id)
+                {
+                    ViewData["Email_message"] = "Student bestaat met mail adres: " + student.StudentMail;
+                    break;
+                }
+                else
+                {
+                    ViewData["Email_message"] = "Student bestaat niet met met nummer: " + id.ToString();
+                }
+            }
+            return View();
         }
 
         // I call it an ID because then ASP.net handles it automatically.
