@@ -1,0 +1,14 @@
+@model List<Student>
+@{
+    ViewData["Title"] = "Pas een student aan";
+    var studentData = ViewBag.student;
+}
+
+<div class="text-center">
+    <form method="post" action="/Student/Edit">
+        Naam: <input type="text" name="StudentNaam" value="@studentData.StudentNaam"/>
+        Nummer: <input type="text" name="StudentNummer" value="@studentData.StudentNummer"/>
+        Mail: <input type="text" name="StudentMail" value="@studentData.StudentMail"/>
+        <input type="submit"/>
+    </form>
+</div>

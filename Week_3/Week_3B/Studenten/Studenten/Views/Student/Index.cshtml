@@ -8,7 +8,9 @@
     <ul class="list-group">
         @foreach (var student in @Model)
         {
-            <li class="list-group-item">@student.StudentNaam</li>
+            <li class="list-group-item">
+                @student.StudentNaam <a asp-controller="Student" asp-action="Edit" asp-route-id="@student.StudentNummer">Aanpassen</a>
+            </li>
         }
     </ul>
     <a href="/Student/CreateStudent">Voeg een nieuwe student toe..</a>

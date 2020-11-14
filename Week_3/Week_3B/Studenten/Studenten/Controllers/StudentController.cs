@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Studenten.Models;
 
@@ -8,6 +9,8 @@ namespace Studenten.Controllers
     public class StudentController : Controller
     {
         private static readonly List<Student> _studentenLijst;
+
+        private static int oldIndex;
 
         static StudentController()
         {
@@ -23,19 +26,42 @@ namespace Studenten.Controllers
 
         public IActionResult Index()
         {
-                return View(_studentenLijst);
+            return View(_studentenLijst);
         }
 
-        public string Aantal(string naam) {
+        public IActionResult Edit(int id)
+        {
+            foreach (var student in _studentenLijst.Where(student => student.StudentNummer == id))
+            {
+                ViewBag.student = student;
+                oldIndex = _studentenLijst.FindIndex(a => a.StudentNummer == student.StudentNummer);
+                return View();
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Student student)
+        {
+            // Hacky but works lol
+            _studentenLijst.RemoveAt(oldIndex);
+            _studentenLijst.Insert(oldIndex, student);
+            return RedirectToAction("Index");
+        }
+
+        public string Aantal(string naam)
+        {
             int aantal = 0;
 
-            foreach(var student in _studentenLijst)
+            foreach (var student in _studentenLijst)
             {
-                if (student.StudentNaam == naam) {
+                if (student.StudentNaam == naam)
+                {
                     aantal++;
                 }
             }
-        
+
             return "De naam " + naam + " komt " + aantal + " keer voor in de lijst.";
         }
 
@@ -56,6 +82,7 @@ namespace Studenten.Controllers
                     ViewData["Email_message"] = "Student bestaat niet met met nummer: " + id.ToString();
                 }
             }
+
             return View();
         }
 
