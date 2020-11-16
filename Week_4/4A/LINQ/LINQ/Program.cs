@@ -46,12 +46,14 @@ public class Program
         BigInteger number1 = 1;
         BigInteger number2 = 1;
         yield return number1;
-        while (true)
+        int i = 0;
+        while (i <= 1000)
         {
             yield return number2;
             BigInteger temp = number1 + number2;
             number1 = number2;
             number2 = temp;
+            i++;
         }
     }
 
@@ -61,9 +63,9 @@ public class Program
         Opdracht2();
         Opdracht3();
         Opdracht4();
-        // Opdracht5();
-        // Opdracht6();
-        // Opdracht7();
+        Opdracht5();
+        Opdracht6();
+        Opdracht7();
     }
 
     static void Opdracht1() // Toon van alle films de titel en het jaartal, gesorteerd op jaartal.
@@ -88,24 +90,24 @@ public class Program
     
     static void Opdracht4() // Toon de 6e t/m 10e film uit de lijst.
     {
-        foreach (Movie movie in Movies.ToList()[6..10])
+        foreach (Movie movie in Movies.Skip(5).Take(5))
         {
             Console.WriteLine(movie.Title);
         }
     }
-    //
-    // static void Opdracht5() // Is er een film uit 1997 (True/False)?
-    // {
-    //     Console.WriteLine(Movies ... .Contains(1997));
-    // }
-    //
-    // static void Opdracht6() // Van welke regisseur is de film 'One Flew over the Cuckoo's Nest'?
-    // {
-    //     Console.WriteLine(Movies.Where(m => m.Title.Equals("One Flew Over the Cuckoo's Nest")). ... .Director);
-    // }
-    //
-    // static void Opdracht7() // Wat is het 1000e Fibonacci getal?
-    // {
-    //     Console.WriteLine(Fibonacci().ToList().ElementAt(1000 - 1));
-    // }
+    
+    static void Opdracht5() // Is er een film uit 1997 (True/False)?
+    {
+        Console.WriteLine(Movies.Any(movie => movie.Year == 1997));
+    }
+    
+    static void Opdracht6() // Van welke regisseur is de film 'One Flew over the Cuckoo's Nest'?
+    {
+    Console.WriteLine(Movies.Where(m => m.Title.Equals("One Flew Over the Cuckoo's Nest")).First().Director);
+    }
+    
+    static void Opdracht7() // Wat is het 1000e Fibonacci getal?
+    {
+        Console.WriteLine(Fibonacci().ToList().ElementAt(1000 - 1));
+    }
 }
