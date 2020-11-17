@@ -46,14 +46,12 @@ public class Program
         BigInteger number1 = 1;
         BigInteger number2 = 1;
         yield return number1;
-        int i = 0;
-        while (i <= 1000)
+        while (true)
         {
             yield return number2;
             BigInteger temp = number1 + number2;
             number1 = number2;
             number2 = temp;
-            i++;
         }
     }
 
@@ -78,14 +76,12 @@ public class Program
 
     static void Opdracht2() // In welk jaar bracht 'Sergio Leone' zijn eerste film uit?
     {
-        Console.WriteLine(Movies.Where(movie => movie.Director == "Sergio Leone")
-            .OrderBy(movie => movie.Year)
-            .ToList()[0].Year);
+        Console.WriteLine(Movies.Where(movie => movie.Director == "Sergio Leone").Min(movie => movie.Year));
     }
 
     static void Opdracht3() // Hoeveel films zijn er van 'Peter Weir' van het genre 'Sci-Fi'?.
     {
-        Console.WriteLine(Movies.Where(movie => movie.Director == "Peter Weir" && movie.Genre == "Sci-Fi").Count());
+        Console.WriteLine(Movies.Count(movie => movie.Director == "Peter Weir" && movie.Genre == "Sci-Fi"));
     }
     
     static void Opdracht4() // Toon de 6e t/m 10e film uit de lijst.
@@ -108,6 +104,6 @@ public class Program
     
     static void Opdracht7() // Wat is het 1000e Fibonacci getal?
     {
-        Console.WriteLine(Fibonacci().ToList().ElementAt(1000 - 1));
+        Console.WriteLine(Fibonacci().ElementAt(1000 - 1));
     }
 }
