@@ -2,11 +2,11 @@ namespace ORM.Models
 {
     public class Koper
     {
-        private int KoperId { get; set; }
-        private string Naam { get; set; }
-        private string Adres { get; set; }
-        private string Email { get; set; }
-        private string TelNummer { get; set; }
-        private Auto Heeft { get; set; }
+        public int KoperId { get; set; }
+        public string Naam { get; set; }
+        public string Adres { get; set; }
+        public string Email { get; set; }
+        public string TelNummer { get; set; }
+        public Auto Heeft { get; set; }
     }
 }

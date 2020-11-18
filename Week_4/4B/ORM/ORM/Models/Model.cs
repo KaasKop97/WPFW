@@ -2,9 +2,9 @@ namespace ORM.Models
 {
     public class Model
     {
-        private string ModelCode { get; set; }
-        private string Merk { get; set; }
-        private string Serie { get; set; }
-        private string Type { get; set; }
+        public string ModelId { get; set; }
+        public string Merk { get; set; }
+        public string Serie { get; set; }
+        public string Type { get; set; }
     }
 }

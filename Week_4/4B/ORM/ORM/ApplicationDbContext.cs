@@ -13,5 +13,36 @@ namespace ORM
         public DbSet<WA> WaVerzekeringen { get; set; }
         public DbSet<WAPlus> WaPlusVerzekeringen { get; set; }
         public DbSet<AllRisk> AllRiskVerzekeringen { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Data Source=Autofabrikant.db");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Fluent API setup keys.
+            modelBuilder.Entity<Auto>().HasKey(a => a.Kenteken);
+            modelBuilder.Entity<Fabrikant>().HasKey(f => f.FabrikantId);
+
+            modelBuilder.Entity<Fabrikant>().HasData(
+                new Fabrikant()
+                {
+                    FabrikantId = 1, Adres = "Johannes straat 21", Email = "info@bmw.nl", Naam = "BMW",
+                    TelefoonNummer = "0652551489"
+                });
+            modelBuilder.Entity<Fabrikant>().HasData(
+                new Fabrikant()
+                {
+                    FabrikantId = 2, Adres = "Pieterson straat 21", Email = "info@ford.nl", Naam = "Ford",
+                    TelefoonNummer = "0652114859"
+                });
+            modelBuilder.Entity<Fabrikant>().HasData(
+                new Fabrikant()
+                {
+                    FabrikantId = 3, Adres = "Jantjeslaan 5102", Email = "info@tesla.nl", Naam = "Tesla",
+                    TelefoonNummer = "0105215698"
+                });
+        }
     }
 }

@@ -2,8 +2,8 @@ namespace ORM.Models
 {
     public class Verzekering
     {
-        private int Id { get; set; }
-        private string Verzekeraar { get; set; }
+        public int Id { get; set; }
+        public string Verzekeraar { get; set; }
         
     }
 }

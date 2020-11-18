@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ORM.Models
@@ -5,10 +6,10 @@ namespace ORM.Models
     [Table("AutoFabrikant")]
     public class Fabrikant
     {
-        private int FabrikantId { get; }
-        private string Naam { get; set; }
-        private string Adres { get; set; }
-        private string Email { get; set; }
-        private string TelefoonNummer { get; set; }
+        public int FabrikantId { get; set; }
+        public string Naam { get; set; }
+        public string Adres { get; set; }
+        public string Email { get; set; }
+        public string TelefoonNummer { get; set; }
     }
 }
