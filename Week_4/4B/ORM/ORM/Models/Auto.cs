@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ORM.Models
 {
@@ -8,7 +9,11 @@ namespace ORM.Models
     {
         [Key]
         public string Kenteken { get; set; }
+        [ForeignKey("Model")]
+        [NotMapped]
         public Model Model { get; set; }
+        [ForeignKey("Fabrikanten")]
+        [NotMapped]
         public List<Fabrikant> Fabrikant { get; set; }
     }
 }

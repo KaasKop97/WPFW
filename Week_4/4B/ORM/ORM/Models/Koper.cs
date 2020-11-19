@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ORM.Models
 {
     public class Koper
@@ -7,6 +9,8 @@ namespace ORM.Models
         public string Adres { get; set; }
         public string Email { get; set; }
         public string TelNummer { get; set; }
+        [ForeignKey("HeeftAuto")]
+        [NotMapped]
         public Auto Heeft { get; set; }
     }
 }

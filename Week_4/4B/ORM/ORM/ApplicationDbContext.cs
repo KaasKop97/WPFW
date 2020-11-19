@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using ORM.Models;
 
@@ -6,8 +7,8 @@ namespace ORM
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Fabrikant> Fabrikanten { get; set; }
-        public DbSet<Auto> Autos { get; set; }
         public DbSet<Model> Modellen { get; set; }
+        public DbSet<Auto> Autos { get; set; }
         public DbSet<Koper> Kopers { get; set; }
         public DbSet<Verzekering> Verzekeringen { get; set; }
         public DbSet<WA> WaVerzekeringen { get; set; }
@@ -43,6 +44,39 @@ namespace ORM
                     FabrikantId = 3, Adres = "Jantjeslaan 5102", Email = "info@tesla.nl", Naam = "Tesla",
                     TelefoonNummer = "0105215698"
                 });
+
+            modelBuilder.Entity<Model>().HasData(
+                new Model()
+                {
+                    Merk = "BMW", ModelId = "1", Serie = "Series 2", Type = "Low Rider"
+                });
+            modelBuilder.Entity<Model>().HasData(
+                new Model()
+                {
+                    Merk = "Ford", ModelId = "2", Serie = "GT40", Type = "Sports Classic"
+                });
+            modelBuilder.Entity<Model>().HasData(
+                new Model()
+                {
+                    Merk = "Tesla", ModelId = "3", Serie = "model X", Type = "EV Sports"
+                });
+            
+            modelBuilder.Entity<WA>().HasData(
+                new WA()
+                {
+                    Id = 1, Omschrijving = "De basisverzekring", Prijs = 29.99, Verzekeraar = "DE verzekerboer"
+                });
+            modelBuilder.Entity<WAPlus>().HasData(
+                new WAPlus()
+                {
+                    Id = 2, Omschrijving = "De verzekering met net iets meer", Prijs = 50.00,
+                    Verzekeraar = "De verzeker prins"
+                });
+            modelBuilder.Entity<AllRisk>().HasData(new AllRisk()
+            {
+                Id = 3, Omschrijving = "De beste verzekering voor alle schade", Prijs = 100.00,
+                Verzekeraar = "De verzekerkoning"
+            });
         }
     }
 }

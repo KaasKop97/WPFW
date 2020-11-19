@@ -48,7 +48,7 @@ namespace Studenten.Controllers
             _studentenLijst.RemoveAt(oldIndex);
             _studentenLijst.Insert(oldIndex, student);
             return RedirectToAction("Index");
-        }
+        }    
 
         public string Aantal(string naam)
         {
