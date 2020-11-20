@@ -17,7 +17,7 @@ namespace ORM
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Autofabrikant.db");
+            optionsBuilder.UseSqlite("Data Source=/home/mitch/Projects/School/Jaar 2/WPFW/Week_4/4B/ORM/ORM/Autofabrikant.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
