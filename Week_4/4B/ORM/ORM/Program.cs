@@ -11,21 +11,35 @@ namespace ORM
         {
             using (var db = new ApplicationDbContext())
             {
-                db.Database.EnsureCreated();
-                var fabrikanten = db.Fabrikanten.ToList();
+                using (var command = db.Database.GetDbConnection().CreateCommand())
+                {
+                    command.CommandText = "SELECT Merk FROM Modellen WHERE ModelId = 3";
+                    db.Database.OpenConnection();
+                    using (var result = command.ExecuteReader())
+                    {
+                        Console.WriteLine("Doing the execution...");
+                        while (result.Read())
+                        {
+                            Console.WriteLine(result.GetString(0));
+                        }
+                    }
+                }
+
+                var fabrikant = db.Fabrikanten.First(f => f.FabrikantId == 1);
                 //TODO For some reason model is empty???? wtf
-                var kaas = db.Modellen.First(model => model.ModelId == 3);
+                var kaas = db.Modellen.FirstOrDefault();
+                Console.WriteLine(kaas.Merk);
                 // TODO EVEN A RAW QUERY RETURNS NOTHING WTF
                 var test = db.Modellen.FromSqlRaw("SELECT * FROM Modellen WHERE Merk ='Tesla'").ToList();
                 foreach (var VARIABLE in test)
                 {
                     Console.WriteLine(VARIABLE.Merk);
                 }
-                
-                
+
+
                 // var newCar = new Auto()
                 // {
-                //     Fabrikant = fabrikanten, Kenteken = "95-RAN-1", Model = kaas
+                //     Fabrikant = fabrikant, Kenteken = "95-RAN-1", Model = kaas
                 // };
                 // db.Autos.Add(newCar);
                 //

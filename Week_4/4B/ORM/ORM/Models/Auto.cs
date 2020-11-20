@@ -11,10 +11,13 @@ namespace ORM.Models
         [StringLength(8)]
         public string Kenteken { get; set; }
         [ForeignKey("Model")]
-        [NotMapped]
-        public Model Model { get; set; }
+        public Model ModelAuto { get; set; }
         [ForeignKey("Fabrikanten")]
+        public Fabrikant AutoFabrikant { get; set; }
         [NotMapped]
-        public List<Fabrikant> Fabrikant { get; set; }
+        public string volledigeNaam
+        {
+            get { return $"{AutoFabrikant} {ModelAuto}";  }
+        }
     }
 }
