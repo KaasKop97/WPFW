@@ -11,9 +11,9 @@ namespace Studenten.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public StudentController()
+        public StudentController(ApplicationDbContext context)
         {
-            _context = new ApplicationDbContext();
+            _context = context;
         }
 
         public IActionResult Index()
@@ -28,7 +28,6 @@ namespace Studenten.Controllers
                 ViewBag.student = student;
                 return View();
             }
-
             return View();
         }
 
@@ -82,18 +81,14 @@ namespace Studenten.Controllers
         // I call it an ID because then ASP.net handles it automatically.
         public IActionResult ZoekStudent(string id)
         {
-            List<Student> tempStudentList = new List<Student>();
             ViewData["searchedLetter"] = id;
-            foreach (var student in _context.Studenten.ToList())
+            List<Student> tempStudentList = _context.Studenten.ToList().Where(student => student.StudentNaam.StartsWith(id.ToUpper()) || student.StudentNaam.StartsWith(id.ToLower())).ToList();
+            if (tempStudentList.Count > 0)
             {
-                // If the name starts with an upper or lower letter we find any.
-                if (student.StudentNaam.StartsWith(id.ToUpper()) || student.StudentNaam.StartsWith(id.ToLower()))
-                {
-                    tempStudentList.Add(student);
-                }
+                return View(tempStudentList);    
             }
+            return new EmptyResult();
 
-            return View(tempStudentList);
         }
 
         public IActionResult CreateStudent()
