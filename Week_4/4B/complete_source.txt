@@ -1,0 +1,246 @@
+Filename: ApplicationDbContext.cs
+
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using ORM.Models;
+
+namespace ORM
+{
+    public class ApplicationDbContext : DbContext
+    {
+        public DbSet<Fabrikant> Fabrikanten { get; set; }
+        public DbSet<Model> Modellen { get; set; }
+        public DbSet<Auto> Autos { get; set; }
+        public DbSet<Koper> Kopers { get; set; }
+        public DbSet<Verzekering> Verzekeringen { get; set; }
+        public DbSet<WA> WaVerzekeringen { get; set; }
+        public DbSet<WAPlus> WaPlusVerzekeringen { get; set; }
+        public DbSet<AllRisk> AllRiskVerzekeringen { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Data Source=/home/mitch/Projects/School/Jaar 2/WPFW/Week_4/4B/ORM/ORM/Autofabrikant.db");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Fluent API setup keys.
+            modelBuilder.Entity<Auto>().HasKey(a => a.Kenteken);
+            modelBuilder.Entity<Fabrikant>().HasKey(f => f.FabrikantId);
+            modelBuilder.Entity<Model>().HasKey(m => m.ModelId);
+
+            modelBuilder.Entity<Model>().HasData(
+                new Model()
+                {
+                    Merk = "BMW", ModelId = 1, Serie = "Series 2", Type = "Low Rider"
+                },
+                new Model()
+                {
+                    Merk = "Ford", ModelId = 2, Serie = "GT40", Type = "Sports Classic"
+                },
+                new Model()
+                {
+                    Merk = "Tesla", ModelId = 3, Serie = "model X", Type = "EV Sports"
+                }
+            );
+
+            modelBuilder.Entity<Fabrikant>().HasData(
+                new Fabrikant()
+                {
+                    FabrikantId = 1, Adres = "Johannes straat 21", Email = "info@bmw.nl", Naam = "BMW",
+                    TelefoonNummer = "0652551489"
+                },
+                new Fabrikant()
+                {
+                    FabrikantId = 2, Adres = "Pieterson straat 21", Email = "info@ford.nl", Naam = "Ford",
+                    TelefoonNummer = "0652114859"
+                },
+                new Fabrikant()
+                {
+                    FabrikantId = 3, Adres = "Jantjeslaan 5102", Email = "info@tesla.nl", Naam = "Tesla",
+                    TelefoonNummer = "0105215698"
+                }
+            );
+            
+            modelBuilder.Entity<WA>().HasData(
+                new WA()
+                {
+                    Id = 1, Omschrijving = "De basisverzekring", Prijs = 29.99, Verzekeraar = "DE verzekerboer"
+                });
+            modelBuilder.Entity<WAPlus>().HasData(
+                new WAPlus()
+                {
+                    Id = 2, Omschrijving = "De verzekering met net iets meer", Prijs = 50.00,
+                    Verzekeraar = "De verzeker prins"
+                });
+            modelBuilder.Entity<AllRisk>().HasData(new AllRisk()
+            {
+                Id = 3, Omschrijving = "De beste verzekering voor alle schade", Prijs = 100.00,
+                Verzekeraar = "De verzekerkoning"
+            });
+        }
+    }
+}
+
+Filename: Program.cs
+
+﻿using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using ORM.Models;
+
+namespace ORM
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var fabrikant = db.Fabrikanten.First(f => f.FabrikantId == 1);
+                var model = db.Modellen.First(m => m.Merk == "Tesla");
+                
+                var newCar = new Auto()
+                {
+                    AutoFabrikant = fabrikant, Kenteken = "95-RAN-1", ModelAuto = model
+                };
+                db.Autos.Add(newCar);
+                
+                var newBuyer = new Koper()
+                {
+                    Naam = "Jan", Adres = "Zeldalaan 21", Email = "jan@jan.nl", Heeft = newCar, KoperId = 1,
+                    TelNummer = "0652559862"
+                };
+                db.Kopers.Add(newBuyer);
+                db.SaveChanges();
+            }
+        }
+    }
+}
+
+Filename: AutoFabrikant.cs
+
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ORM.Models
+{
+    [Table("AutoFabrikant")]
+    public class Fabrikant
+    {
+        public int FabrikantId { get; set; }
+        public string Naam { get; set; }
+        public string Adres { get; set; }
+        public string Email { get; set; }
+        public string TelefoonNummer { get; set; }
+    }
+}
+
+Filename: WAPlus.cs
+
+namespace ORM.Models
+{
+    public class WAPlus : Verzekering
+    {
+        public double Prijs { get; set; }
+        public string Omschrijving { get; set; }
+    }
+}
+
+Filename: Model.cs
+
+using System.ComponentModel.DataAnnotations;
+
+namespace ORM.Models
+{
+    public class Model
+    {
+        public int ModelId { get; set; }
+        [Required]
+        public string Merk { get; set; }
+        [Required]
+        public string Serie { get; set; }
+        [Required]
+        public string Type { get; set; }
+    }
+}
+
+Filename: Koper.cs
+
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ORM.Models
+{
+    public class Koper
+    {
+        public int KoperId { get; set; }
+        public string Naam { get; set; }
+        public string Adres { get; set; }
+        public string Email { get; set; }
+        public string TelNummer { get; set; }
+        [ForeignKey("HeeftAuto")]
+        [NotMapped]
+        public Auto Heeft { get; set; }
+    }
+}
+
+Filename: Auto.cs
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ORM.Models
+{
+    public class Auto
+    {
+        [Key]
+        [StringLength(8)]
+        public string Kenteken { get; set; }
+        [ForeignKey("Model")]
+        public Model ModelAuto { get; set; }
+        [ForeignKey("Fabrikanten")]
+        public Fabrikant AutoFabrikant { get; set; }
+        [NotMapped]
+        public string volledigeNaam
+        {
+            get { return $"{AutoFabrikant} {ModelAuto}";  }
+        }
+    }
+}
+
+Filename: WA.cs
+
+namespace ORM.Models
+{
+    public class WA : Verzekering
+    {
+        public double Prijs { get; set; }
+        public string Omschrijving { get; set; }
+    }
+}
+
+Filename: AllRisk.cs
+
+namespace ORM.Models
+{
+    public class AllRisk : Verzekering
+    {
+        public double Prijs { get; set; }
+        public string Omschrijving { get; set; }
+    }
+}
+
+Filename: Verzekering.cs
+
+namespace ORM.Models
+{
+    public class Verzekering
+    {
+        public int Id { get; set; }
+        public string Verzekeraar { get; set; }
+        
+    }
+}
+
