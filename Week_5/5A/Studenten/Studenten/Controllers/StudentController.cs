@@ -9,27 +9,11 @@ namespace Studenten.Controllers
 {
     public class StudentController : Controller
     {
-        private static readonly List<Student> _studentenLijst;
         private readonly ApplicationDbContext _context;
-        
 
-        private static int oldIndex;
-
-        static StudentController()
+        public StudentController()
         {
-            _studentenLijst = new List<Student>()
-            {
-                new Student() {StudentMail = "10000@student.hhs.nl", StudentNaam = "FOUT", StudentNummer = 10000},
-                new Student() {StudentMail = "20000@student.hhs.nl", StudentNaam = "FOUT", StudentNummer = 20000},
-                new Student() {StudentMail = "30000@student.hhs.nl", StudentNaam = "FOUT", StudentNummer = 30000},
-                new Student() {StudentMail = "40000@student.hhs.nl", StudentNaam = "FOUT", StudentNummer = 40000},
-                new Student() {StudentMail = "50000@student.hhs.nl", StudentNaam = "FOUT", StudentNummer = 50000}
-            };
-        }
-
-        public StudentController(ApplicationDbContext context)
-        {
-            _context = context;
+            _context = new ApplicationDbContext();
         }
 
         public IActionResult Index()

@@ -26,10 +26,7 @@ namespace Studenten
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<ApplicationDbContext>(
-                options => options.UseSqlite(
-                    "Data Source=/home/mitch/Projects/School/Jaar 2/WPFW/Week_5/5A/Studenten/Studenten/student.db")
-            );
+            services.AddDbContext<ApplicationDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
