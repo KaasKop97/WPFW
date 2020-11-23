@@ -17,16 +17,20 @@ namespace ORM
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // Setting the option to use sqlite instead of the default sqlserver.
+            // this path must be absolute or it will not work and give vague errors (goodbye 2 days of debugging)
             optionsBuilder.UseSqlite("Data Source=/home/mitch/Projects/School/Jaar 2/WPFW/Week_4/4B/ORM/ORM/Autofabrikant.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Fluent API setup keys.
+            // This sets primary keys of multiple tables.
             modelBuilder.Entity<Auto>().HasKey(a => a.Kenteken);
             modelBuilder.Entity<Fabrikant>().HasKey(f => f.FabrikantId);
             modelBuilder.Entity<Model>().HasKey(m => m.ModelId);
-
+            
+            // Setup car model with some test data.
             modelBuilder.Entity<Model>().HasData(
                 new Model()
                 {
@@ -41,7 +45,8 @@ namespace ORM
                     Merk = "Tesla", ModelId = 3, Serie = "model X", Type = "EV Sports"
                 }
             );
-
+            
+            // Setup Factory with some test data.
             modelBuilder.Entity<Fabrikant>().HasData(
                 new Fabrikant()
                 {
