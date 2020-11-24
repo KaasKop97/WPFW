@@ -1,0 +1,16 @@
+@model List<Student>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1>Studenten</h1>
+    <ul class="list-group">
+        <p>Successvol de nieuwe student toegevoegd!</p>
+        @Model.Count
+        @foreach (var student in @Model)
+        {
+            <li class="list-group-item">@student.StudentNaam</li>
+        }
+    </ul>
+</div>
