@@ -106,7 +106,8 @@ namespace Studenten.Controllers
         //Work damn it
         public IActionResult TopStudents()
         {
-            Studenten.OrderByDesc(x => x.StudentGrade).Take(3);
+            Studenten.OrderByDesc(x => x.StudentGrade).Select(StudentNaam).Take(3);
+            //I have no idea if Select is the right option
         }
 
         public IActionResult CreateStudent()

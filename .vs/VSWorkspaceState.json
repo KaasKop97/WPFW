@@ -1,15 +1,17 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Week_3",
-    "\\Week_3\\Week_3B",
-    "\\Week_3\\Week_3B\\Studenten",
-    "\\Week_3\\Week_3B\\Studenten\\Studenten",
-    "\\Week_3\\Week_3B\\Studenten\\Studenten\\Controllers",
-    "\\Week_3\\Week_3B\\Studenten\\Studenten\\Models",
-    "\\Week_3\\Week_3B\\Studenten\\Studenten\\Views",
-    "\\Week_3\\Week_3B\\Studenten\\Studenten\\Views\\Student"
+    "\\Week_5",
+    "\\Week_5\\5A\\5A",
+    "\\Week_5\\5A\\5A\\Studenten",
+    "\\Week_5\\5B",
+    "\\Week_5\\5B\\5B",
+    "\\Week_5\\5B\\5B\\Studenten",
+    "\\Week_5\\5B\\5B\\Studenten\\Studenten",
+    "\\Week_5\\5B\\5B\\Studenten\\Studenten\\Views",
+    "\\Week_5\\5B\\5B\\Studenten\\Studenten\\Views\\Home",
+    "\\Week_5\\5B\\5B\\Studenten\\Studenten\\Views\\Shared"
   ],
-  "SelectedNode": "\\Week_3\\Week_3B\\Studenten\\Studenten\\Models\\Student.cs",
+  "SelectedNode": "\\Week_5\\5B\\5B\\Studenten\\Studenten\\Views\\Shared\\_Layout.cshtml",
   "PreviewInSolutionExplorer": false
 }
