@@ -116,7 +116,7 @@ namespace Studenten.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateStudent(string studentNaam, int studentNummer, string studentMail, int StudentPhonenr, int StudentAge)
+        public IActionResult CreateStudent(string studentNaam, int studentNummer, string studentMail, int StudentPhonenr, int StudentAge, double StudentGrade)
         {
             // Create the new student, add it to the context and save the changes.
             var newStudent = new Student

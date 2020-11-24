@@ -8,7 +8,7 @@ namespace Studenten.Models
         public string StudentMail { get; set; }
         public int StudentPhonenr { get; set; }
         public int StudentAge { get; set; }
-        public int StudentGrade { get; set; }
+        public double StudentGrade { get; set; }
         List<Student> Vrienden;
     }
 }
