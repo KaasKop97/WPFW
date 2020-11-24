@@ -106,6 +106,7 @@ namespace Studenten.Controllers
         //Work damn it
         public IActionResult TopStudents()
         {
+            //Orders grades from highest to lowest, selects name and takes first 3 students (i think, it's supposed to anyway..)
             Studenten.OrderByDesc(x => x.StudentGrade).Select(StudentNaam).Take(3);
             //I have no idea if Select is the right option
         }
