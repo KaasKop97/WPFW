@@ -103,7 +103,8 @@ namespace Studenten.Controllers
 
         }
 
-        public IActionResult TopStudents(string id)
+        //Work damn it
+        public IActionResult TopStudents()
         {
             Studenten.OrderByDesc(x => x.StudentGrade).Take(3);
         }
@@ -120,7 +121,7 @@ namespace Studenten.Controllers
             var newStudent = new Student
             {
                 StudentMail = studentMail, StudentNaam = studentNaam, StudentNummer = studentNummer
-                StudentPhonenr = StudentPhonenr, StudentAge = StudentAge
+                StudentPhonenr = StudentPhonenr, StudentAge = StudentAge, StudentGrade = StudentGrade
             };
             _context.Studenten.Add(newStudent);
             _context.SaveChanges();
