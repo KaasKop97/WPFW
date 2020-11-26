@@ -104,10 +104,18 @@ namespace Studenten.Controllers
         }
 
         //Work damn it
-        public IActionResult TopStudents()
+        public String TopStudents()
         {
+            String temp = "";
             //Orders grades from highest to lowest, selects name and takes first 3 students (i think, it's supposed to anyway..)
-            Studenten.OrderByDesc(x => x.StudentGrade).Select(StudentNaam).Take(3);
+            var list = _context.Studenten.OrderByDescending(x => x.StudentGrade).Take(3);
+            foreach (Student student in list)
+            {
+                Console.WriteLine(student.StudentNaam);
+                temp = student.StudentNaam;
+                
+            }
+            return temp;
             //I have no idea if Select is the right option
         }
 
@@ -122,7 +130,7 @@ namespace Studenten.Controllers
             // Create the new student, add it to the context and save the changes.
             var newStudent = new Student
             {
-                StudentMail = studentMail, StudentNaam = studentNaam, StudentNummer = studentNummer
+                StudentMail = studentMail, StudentNaam = studentNaam, StudentNummer = studentNummer,
                 StudentPhonenr = StudentPhonenr, StudentAge = StudentAge, StudentGrade = StudentGrade
             };
             _context.Studenten.Add(newStudent);

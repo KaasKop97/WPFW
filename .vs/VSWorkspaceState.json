@@ -1,17 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Week_5",
-    "\\Week_5\\5A\\5A",
-    "\\Week_5\\5A\\5A\\Studenten",
-    "\\Week_5\\5B",
-    "\\Week_5\\5B\\5B",
-    "\\Week_5\\5B\\5B\\Studenten",
-    "\\Week_5\\5B\\5B\\Studenten\\Studenten",
-    "\\Week_5\\5B\\5B\\Studenten\\Studenten\\Views",
-    "\\Week_5\\5B\\5B\\Studenten\\Studenten\\Views\\Home",
-    "\\Week_5\\5B\\5B\\Studenten\\Studenten\\Views\\Shared"
+    "\\Week_4",
+    "\\Week_4\\4B",
+    "\\Week_4\\4B\\ORM",
+    "\\Week_4\\4B\\ORM\\ORM",
+    "\\Week_4\\4B\\ORM\\ORM\\Models"
   ],
-  "SelectedNode": "\\Week_5\\5B\\5B\\Studenten\\Studenten\\Views\\Shared\\_Layout.cshtml",
+  "SelectedNode": "\\Week_4\\4B\\ORM\\ORM\\Models\\WAPlus.cs",
   "PreviewInSolutionExplorer": false
 }

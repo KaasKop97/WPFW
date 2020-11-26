@@ -6,10 +6,13 @@
 
 <div class="text-center">
     <form method="post" action="/Student/Edit">
-        Naam: <input type="text" name="StudentNaam" value="@studentData.StudentNaam"/>
-        Nummer: <input type="text" name="StudentNummer" value="@studentData.StudentNummer"/>
-        Mail: <input type="text" name="StudentMail" value="@studentData.StudentMail"/>
-        <input type="hidden" name="Id" value="@studentData.Id"/>
-        <input type="submit"/>
+        Naam: <input type="text" name="StudentNaam" value="@studentData.StudentNaam" />
+        Nummer: <input type="text" name="StudentNummer" value="@studentData.StudentNummer" />
+        Mail: <input type="text" name="StudentMail" value="@studentData.StudentMail" />
+        Telefoonnummer: <input type="text" name="StudentPhonenr" value="@studentData.StudentPhonenr" />
+        Leeftijd: <input type="text" name="StudentAge" value="@studentData.StudentAge" />
+        Cijfer: <input type="text" name="StudentGrade" value="@studentData.StudentGrade" />
+        <input type="hidden" name="Id" value="@studentData.Id" />
+        <input type="submit" />
     </form>
 </div>

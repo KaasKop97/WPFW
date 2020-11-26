@@ -28,7 +28,7 @@ namespace Studenten
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlite(
-                    "Data Source=/home/mitch/Projects/School/Jaar 2/WPFW/Week_5/5A/Studenten/Studenten/student.db")
+                    "Data Source=C:\\Users\\rebec\\source\\repos\\WPFW\\Week_5\\5B\\Studenten\\Studenten\\Studenten.db")
             );
         }
 
