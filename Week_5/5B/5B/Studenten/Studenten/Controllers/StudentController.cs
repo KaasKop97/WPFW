@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Studenten.Data;
 using Studenten.Models;
@@ -106,17 +107,17 @@ namespace Studenten.Controllers
         //Work damn it
         public String TopStudents()
         {
-            String temp = "";
+            StringBuilder temp = new StringBuilder();
+            temp.Append("Top 3 studenten: ");
             //Orders grades from highest to lowest, selects name and takes first 3 students (i think, it's supposed to anyway..)
-            var list = _context.Studenten.OrderByDescending(x => x.StudentGrade).Take(3);
-            foreach (Student student in list)
+            var list = _context.Studenten.OrderByDescending(x => x.StudentGrade).Take(3).ToList();
+            foreach (var student in list)
             {
-                Console.WriteLine(student.StudentNaam);
-                temp = student.StudentNaam;
-                
+                temp.Append(" " + student.StudentNaam + " ");
             }
-            return temp;
-            //I have no idea if Select is the right option
+
+            Console.WriteLine(temp);
+            return temp.ToString();
         }
 
         public IActionResult CreateStudent()

@@ -99,6 +99,14 @@ namespace Studenten.Controllers
             return new EmptyResult();
 
         }
+        
+        //public IActionResult OnGetPartial() => PartialView("_ValidationScriptsPartial", ViewData = );
+
+        public IActionResult OnGetPartial()
+        {
+            var test = _context.Studenten.OrderByDescending(x => x.StudentNaam).Take(3).ToList();
+            return PartialView("_ValidationScriptsPartial", ViewData["studenten_lijst"] = test);
+        }
 
         public IActionResult CreateStudent()
         {

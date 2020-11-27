@@ -1,1 +1,8 @@
-﻿De top 3 studenten: 
+﻿@using Studenten.Data
+@using Studenten.Controllers
+@{
+    // Dit is zo hacky...
+    var _context = new ApplicationDbContext();
+    var idk = new StudentController(_context);
+}
+<p>@idk.TopStudents()</p>
