@@ -31,6 +31,7 @@ namespace Studenten.Controllers
                 ViewBag.student = student;
                 return View();
             }
+
             return View();
         }
 
@@ -50,7 +51,7 @@ namespace Studenten.Controllers
             // Saving it to the database.
             _context.SaveChanges();
             return RedirectToAction("Index");
-        }    
+        }
 
         public string Aantal(string naam)
         {
@@ -93,15 +94,16 @@ namespace Studenten.Controllers
             // We set the letter in the viewdata so view can display it (EXTRA "CHALLENGE" :P)
             ViewData["searchedLetter"] = id;
             // Get the student as a list then search in that list for name startswith() upper and lowercase.
-            List<Student> tempStudentList = _context.Studenten.ToList().Where(student => student.StudentNaam.StartsWith(id.ToUpper()) || student.StudentNaam.StartsWith(id.ToLower())).ToList();
+            List<Student> tempStudentList = _context.Studenten.ToList().Where(student =>
+                student.StudentNaam.StartsWith(id.ToUpper()) || student.StudentNaam.StartsWith(id.ToLower())).ToList();
             if (tempStudentList.Count > 0)
             {
                 // Nice we found at least one student with that letter.
-                return View(tempStudentList);    
+                return View(tempStudentList);
             }
+
             // Rip sending empty result
             return new EmptyResult();
-
         }
 
         //Work damn it
@@ -125,16 +127,29 @@ namespace Studenten.Controllers
             return View();
         }
 
+        // [HttpPost]
+        // public IActionResult CreateStudent(string studentNaam, int studentNummer, string studentMail, int StudentPhonenr, int StudentAge, double StudentGrade)
+        // {
+        //     // Create the new student, add it to the context and save the changes.
+        //     var newStudent = new Student
+        //     {
+        //         StudentMail = studentMail, StudentNaam = studentNaam, StudentNummer = studentNummer,
+        //         StudentPhonenr = StudentPhonenr, StudentAge = StudentAge, StudentGrade = StudentGrade
+        //     };
+        //     _context.Studenten.Add(newStudent);
+        //     _context.SaveChanges();
+        //     return RedirectToAction("Index");
+        // }
         [HttpPost]
-        public IActionResult CreateStudent(string studentNaam, int studentNummer, string studentMail, int StudentPhonenr, int StudentAge, double StudentGrade)
+        public IActionResult CreateStudent(Student student)
         {
             // Create the new student, add it to the context and save the changes.
-            var newStudent = new Student
+            if (!ModelState.IsValid)
             {
-                StudentMail = studentMail, StudentNaam = studentNaam, StudentNummer = studentNummer,
-                StudentPhonenr = StudentPhonenr, StudentAge = StudentAge, StudentGrade = StudentGrade
-            };
-            _context.Studenten.Add(newStudent);
+                //Send em back where they belong since they did it wrong.
+                return RedirectToAction("CreateStudent");
+            }
+            _context.Studenten.Add(student);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
