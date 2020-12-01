@@ -20,6 +20,6 @@ namespace Studenten.Models
         [Range(0, 99, ErrorMessage = "Das best wel oud niet?")]
         public int StudentAge { get; set; }
         public double StudentGrade { get; set; }
-        List<Student> Vrienden;
+        List<Student> Vrienden { get; set; }
     }
 }
