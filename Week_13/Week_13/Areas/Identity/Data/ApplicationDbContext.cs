@@ -9,9 +9,11 @@ using Week_13.Models;
 
 namespace ApplicationDbContext
 {
-    public class cs : IdentityDbContext<User>
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
-        public cs(DbContextOptions<cs> options)
+        public DbSet<ToetsResultaat> ToetsResultaatSet { get; set; }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }

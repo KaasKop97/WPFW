@@ -16,12 +16,17 @@ namespace Week_13.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<cs>(options =>
+                services.AddDbContext<ApplicationDbContext.ApplicationDbContext>(options =>
                     options.UseSqlite(
                         context.Configuration.GetConnectionString("csConnection")));
 
-                services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<cs>();
+                // services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                //     .AddEntityFrameworkStores<ApplicationDbContext.ApplicationDbContext>();
+                services.AddIdentity<IdentityUser, IdentityRole>(options =>
+                        options.SignIn.RequireConfirmedAccount = true)
+                    .AddEntityFrameworkStores<ApplicationDbContext.ApplicationDbContext>()
+                    .AddDefaultUI()
+                    .AddDefaultTokenProviders();
             });
         }
     }
