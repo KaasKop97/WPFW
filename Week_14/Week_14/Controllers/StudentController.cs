@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Week_14.Models;
+using Week_14.ViewModels;
 
 namespace Week_14
 {
@@ -19,7 +20,7 @@ namespace Week_14
         }
 
         // GET: Student
-        public async Task<IActionResult> Index(string search, string sortOrder)
+        public async Task<IActionResult> Index(string search, string sortOrder, int page)
         {
             var studenten = from s in _context.Student select s;
             
@@ -41,6 +42,35 @@ namespace Week_14
                 }
             }
             return View(await studenten.ToListAsync());
+        }
+
+        //trying to seperate Index into Filter and Sort. Maybe add page into Index and not seperate it idk
+        //i'll see later
+        public async Task<IActionResult> Sort(string sortOrder)
+        {
+            var studenten = _context.Student;
+            ViewData["Sorting"] = sortOrder ?? "oplopend";
+            switch (sortOrder)
+            {
+                case "Descending":
+                    studenten = studenten.OrderByDescending(s => s.Naam);
+                    break;
+                default:
+                    studenten = studenten.OrderBy(s => s.Naam);
+                    break;
+            }
+            return View(await studenten.ToListAsync());
+        }
+
+        //Supposed to be the final result
+        public async Task<IActionResult> Index2(string sortOrder, string filter, int page)
+        {
+            return View(await PagedList<Student>.CreateAsync(Filter(Sort(sortOrder), filter), page, 5));
+        }
+
+        private async Task<PagedList<Student>> Paging(IQueryable<Student> pageList, int page)
+        {
+            return await PagedList<Student>.CreateAsync(lijst, page, 5);
         }
 
         // GET: Student/Details/5

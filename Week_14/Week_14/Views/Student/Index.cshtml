@@ -1,4 +1,4 @@
-@model IEnumerable<Week_14.Models.Student>
+@model Week_14.ViewModels.PagedList<Week_14.Models.Student>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,7 +9,8 @@
 <h1>Index</h1>
 
 <form method="get" asp-action="Index" id="search">
-    <input type="text" name="search"/>
+    Filter: <input type="text" name="search" value="@ViewData["Filter"]"/>
+
     <input type="submit"/>
 </form>
 
@@ -20,12 +21,30 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Naam)
-                <a asp-action="Index" asp-route-sortOrder="Descending">Aflopend</a>
-                <a asp-action="Index" asp-route-sortOrder="Ascending">Oplopend</a>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Naam)
+                @if ((string)ViewData["Sorting"] == "Ascending")
+                {
+                    <a asp-action="Index" 
+                       asp-route-sortOrder="Ascending"
+                       asp-route-filter="@ViewData["Filter"]">Oplopend</a>
+                }
+                else
+                {
+                    <a asp-action="Index" 
+                       asp-route-sortOrder="Descending"
+                       asp-route-filter="@ViewData["Filter"]">Aflopend</a>
+                }
+
+            <form asp-action="Index" method="get">
+                <input type="hidden" name="sorteerVolgorde" value='@ViewData["Sorteer"]' />
+                <input type="hidden" name="pagina" value='0' />
+                Filter: <input type="text" name="filter" />
+                <input type="submit" value="Filter" />
+            </form>
+
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Lengte)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Lengte)
             </th>
             <th></th>
         </tr>
@@ -49,4 +68,14 @@
         </tr>
 }
     </tbody>
+   <a asp-action="Index" asp-route-pagina="@(Model.Page - 1)"
+      asp-route-sorteerVolgorde='@ViewData["Sorteer"]'
+      asp-route-filter='@ViewData["Filter"]' class='btn btn-default @(Model.HasPrevious() ? "" : "disabled")'>
+
+   </a>
+    <a asp-action="Index" asp-route-pagina="@(Model.Page + 1)"
+       asp-route-sorteerVolgorde='@ViewData["Sorteer"]'
+       asp-route-filter='@ViewData["Filter"]' class='btn btn-default @(Model.HasNext() ? "" : "disabled")'>
+
+    </a>
 </table>
