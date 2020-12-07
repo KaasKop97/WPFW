@@ -1,34 +1,47 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Week_13.Controllers
 {
-    public class RolesController : Controller
+    [Authorize]
+    public class RoleController : Controller
     {
         RoleManager<IdentityRole> _roleManager;
         UserManager<IdentityUser> _userManager;
 
-        public RolesController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
+        public RoleController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
         }
 
-        public string Index()
+        public IActionResult Index()
         {
-            return _roleManager.Roles.ToString();
+            ViewBag.Roles = _roleManager.Roles.ToList();
+            return View();
         }
 
-        // public IActionResult Create() => View();
-
-        [HttpPost]
-        public async Task<IActionResult> Create(string name)
+        public IActionResult Create()
         {
-            if (string.IsNullOrEmpty(name)) return View(name);
-            var result = await _roleManager.CreateAsync(new IdentityRole(name));
+            return View();
+        }
+        
+        public async Task<IActionResult> Add()
+        {
+            ViewBag.Roles = _roleManager.Roles.ToList();
+            return View();
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> Add(IdentityRole role)
+        {
+            if (string.IsNullOrEmpty(role.Name)) return View(role.Name);
+            var result = await _roleManager.CreateAsync(role);
             if (result.Succeeded)
             {
                 return RedirectToAction("Index");
@@ -41,7 +54,22 @@ namespace Week_13.Controllers
                 }
             }
 
-            return View(name);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddUserToRole(string RoleName)
+        {
+            Console.WriteLine(RoleName);
+            var GetUser = await _userManager.GetUserAsync(HttpContext.User);
+            await _userManager.AddToRoleAsync(GetUser, RoleName);
+            return RedirectToAction("Index");
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> RemoveUserFromRole(IdentityRole role)
+        {
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Identity
+@{
+    ViewData["Title"] = "Rollen";
+    List<IdentityRole> roles = ViewBag.Roles;
+}
+
+<div class="text-center">
+    <p>De volgende rollen bestaan: <br/></p>
+    <ul>
+    @{
+        foreach (var rol in roles)
+        {
+            <li>@rol</li>
+        }
+    }
+    </ul>
+    <a asp-controller="Role" asp-action="Create">Nieuwe rol toevoegen?</a>
+    <a asp-controller="Role" asp-action="Add">Nieuwe rol toevoegen?</a>
+</div>

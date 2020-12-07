@@ -1,0 +1,28 @@
+@using Microsoft.AspNetCore.Identity
+@model Microsoft.AspNetCore.Identity.IdentityRole
+@{
+    ViewData["Title"] = "Rollen toevoegen";
+    List<IdentityRole> roles = ViewBag.Roles;
+}
+
+<div class="text-center">
+    <p>De volgende rollen bestaan: <br/></p>
+    <ul>
+        @{
+            foreach (var rol in roles)
+            {
+                <li>
+                    @rol
+                    <form method="post" action="AddUserToRole?RoleName=@rol.Name">
+                        <input type="submit" value="Voeg toe"/>
+                    </form>
+                    <form method="post" action="RemoveUserFromRole?RoleName=@rol.Name">
+                        <input type="submit" value="Verwijder"/>
+                    </form>
+                </li>
+            }
+        }
+    </ul>
+    <a asp-controller="Role" asp-action="Create">Nieuwe rol toevoegen?</a>
+    <a asp-controller="Role" asp-action="Add">Nieuwe rol toevoegen?</a>
+</div>

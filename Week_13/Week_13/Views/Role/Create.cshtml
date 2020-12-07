@@ -1,0 +1,13 @@
+@model Microsoft.AspNetCore.Identity.IdentityRole
+@{
+    ViewData["Title"] = "Rollen toevoegen";
+}
+
+<form method="post" asp-action="Add">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Rolnaam:</label>
+        <input asp-for="Name" class="form-control" name="Name"/>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <input type="submit"/>
+</form>
