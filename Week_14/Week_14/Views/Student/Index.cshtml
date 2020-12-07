@@ -1,0 +1,52 @@
+@model IEnumerable<Week_14.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>Index</h1>
+
+<form method="get" asp-action="Index" id="search">
+    <input type="text" name="search"/>
+    <input type="submit"/>
+</form>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naam)
+                <a asp-action="Index" asp-route-sortOrder="Descending">Aflopend</a>
+                <a asp-action="Index" asp-route-sortOrder="Ascending">Oplopend</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lengte)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naam)
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lengte)
+                
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
