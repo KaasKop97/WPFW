@@ -1,0 +1,8 @@
+﻿@using Studenten.Data
+@using Studenten.Controllers
+@{
+    
+    var _context = new ApplicationDbContext();
+    var idk = new StudentController(_context);
+}
+<p>@idk.TopStudents()</p>

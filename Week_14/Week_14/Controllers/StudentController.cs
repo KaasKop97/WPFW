@@ -17,9 +17,22 @@ namespace Studenten.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        private IQueryable<Student> Sort(string sortOrder)
         {
-            return View(_context.Studenten.ToList());
+            IQueryable<Student> lijst = _context.Student;
+            ViewData["Sorting"] = sortOrder ?? "oplopend";
+            switch (sortOrder)
+            {
+                case "aflopend": lijst = lijst.OrderByDescending(s => s.StudentNaam); 
+                    break;
+                default: lijst = lijst.OrderBy(s => s.StudentNaam); 
+                    break;
+            }
+            return lijst;
+        }
+        public async Task<IActionResult> Index(string sortOrder)
+        {
+            return View(await Sort(sortOrder).ToListAsync());
         }
 
         public IActionResult Edit(int id)
@@ -122,34 +135,6 @@ namespace Studenten.Controllers
             return temp.ToString();
         }
 
-        public async Task<IActionResult> Index(string sorteerVolgorde) 
-        {
-            IQueryable<Student> lijst = _context.Student;
-            switch (sorteerVolgorde)
-            {
-            case "aflopend": lijst = lijst.OrderByDescending(s => s.Naam); break;
-            default: lijst = lijst.OrderBy(s => s.Naam); break; 
-            } 
-            return View(await lijst.ToListAsync());
-        }
-    }
-
-
-private IQueryable<Student> Sort(string sorteerVolgorde)
-{
-    IQueryable<Student> lijst = _context.Student;
-    switch (sorteerVolgorde)
-    {
-        case "aflopend": lijst = lijst.OrderByDescending(s => s.Naam); break;
-        default: lijst = lijst.OrderBy(s => s.Naam); break;
-    }
-    return lijst;
-}
-public async Task<IActionResult> Index(string sorteerVolgorde)
-{
-    return View(await Sort(sorteerVolgorde).ToListAsync());
-}
-
         public IActionResult CreateStudent()
         {
             return View();
@@ -181,5 +166,7 @@ public async Task<IActionResult> Index(string sorteerVolgorde)
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
     }
 }

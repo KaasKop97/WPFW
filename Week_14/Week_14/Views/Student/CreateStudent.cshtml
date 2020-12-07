@@ -1,0 +1,53 @@
+@model Studenten.Models.Student
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-controller="Student" asp-action="CreateStudent">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StudentNummer" class="control-label">Student nummer</label>
+                <input asp-for="StudentNummer" class="form-control" name="StudentNummer"/>
+                <span asp-validation-for="StudentNummer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentNaam" class="control-label">Student naam</label>
+                <input asp-for="StudentNaam" class="form-control" name="StudentNaam"/>
+                <span asp-validation-for="StudentNaam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentMail" class="control-label">Student e-mailadres</label>
+                <input asp-for="StudentMail" class="form-control" name="StudentMail"/>
+                <span asp-validation-for="StudentMail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentPhonenr" class="control-label">Student telefoonnummer</label>
+                <input asp-for="StudentPhonenr" class="form-control" name="StudentPhonenr"/>
+                <span asp-validation-for="StudentPhonenr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentAge" class="control-label">Student leeftijd</label>
+                <input asp-for="StudentAge" class="form-control" name="StudentAge"/>
+                <span asp-validation-for="StudentAge" class="text-danger" aria-valuemax="1"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentGrade" class="control-label">Student cijfer</label>
+                <input asp-for="StudentGrade" class="form-control" name="StudentGrade"/>
+                <span asp-validation-for="StudentGrade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Student" asp-action="Index">Terug naar overzicht.</a>
+</div>
