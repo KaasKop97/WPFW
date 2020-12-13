@@ -1,4 +1,4 @@
-@model Week_14.ViewModels.PagedList<Week_14.Models.Student>
+@model Week_14.Data.PaginatedList<Student>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,8 +9,7 @@
 <h1>Index</h1>
 
 <form method="get" asp-action="Index" id="search">
-    Filter: <input type="text" name="search" value="@ViewData["Filter"]"/>
-
+    <input type="text" name="search"/>
     <input type="submit"/>
 </form>
 
@@ -19,46 +18,28 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Naam)
-                @if ((string)ViewData["Sorting"] == "Ascending")
-                {
-                    <a asp-action="Index" 
-                       asp-route-sortOrder="Ascending"
-                       asp-route-filter="@ViewData["Filter"]">Oplopend</a>
-                }
-                else
-                {
-                    <a asp-action="Index" 
-                       asp-route-sortOrder="Descending"
-                       asp-route-filter="@ViewData["Filter"]">Aflopend</a>
-                }
-
-            <form asp-action="Index" method="get">
-                <input type="hidden" name="sorteerVolgorde" value='@ViewData["Sorteer"]' />
-                <input type="hidden" name="pagina" value='0' />
-                Filter: <input type="text" name="filter" />
-                <input type="submit" value="Filter" />
-            </form>
-
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstOrDefault().Lengte)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            Naam
+            <a asp-action="Index" asp-route-sortOrder="Descending">Aflopend</a>
+            <a asp-action="Index" asp-route-sortOrder="Ascending">Oplopend</a>
+        </th>
+        <th>
+            Lengte
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Naam)
-                
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Lengte)
-                
+
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
@@ -66,16 +47,26 @@
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
-   <a asp-action="Index" asp-route-pagina="@(Model.Page - 1)"
-      asp-route-sorteerVolgorde='@ViewData["Sorteer"]'
-      asp-route-filter='@ViewData["Filter"]' class='btn btn-default @(Model.HasPrevious() ? "" : "disabled")'>
-
-   </a>
-    <a asp-action="Index" asp-route-pagina="@(Model.Page + 1)"
-       asp-route-sorteerVolgorde='@ViewData["Sorteer"]'
-       asp-route-filter='@ViewData["Filter"]' class='btn btn-default @(Model.HasNext() ? "" : "disabled")'>
-
-    </a>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>
