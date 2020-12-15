@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Index</title>
+    <script type="text/javascript">
+    async function LoadStudents() 
+    {
+        let test = document.getElementById("studentOverview");
+        test.innerHTML = "";
+        let response = await fetch("https://localhost:5001/api/studentapi");
+        if(response.ok) 
+        {
+            let json = await response.json();
+            for (let i = 0; i < json.length; i++)
+            {
+                // Tablerow 
+                let tr = document.createElement("tr");
+                
+                // Naam input
+                let tdNaam = document.createElement("td");
+                let naamInput = document.createElement("input");
+                naamInput.value = json[i]["naam"];
+                naamInput.name = "naam";
+                tdNaam.appendChild(naamInput);
+                tr.appendChild(tdNaam);
+                
+                // Leeftijd input
+                let tdLeeftijd = document.createElement("td");
+                let leeftijdInput = document.createElement("input");
+                leeftijdInput.value = json[i]["leeftijd"];
+                leeftijdInput.name = "leeftijd";
+                tdLeeftijd.appendChild(leeftijdInput);
+                tr.appendChild(tdLeeftijd);
+                
+                // Button for edit and deletion
+                let tdButtons = document.createElement("td");
+                let editButton = document.createElement("input");
+                editButton.href = "#";
+                editButton.type = "button"
+                editButton.onclick = function() { EditStudent(json[i]["studentId"], this) };
+                editButton.value = "Edit";
+                
+                
+                let deleteButton = document.createElement("input");
+                deleteButton.href = "#";
+                deleteButton.type = "button";
+                deleteButton.onclick = function() { 
+                    DeleteStudent(json[i]["studentId"]);
+                };
+                deleteButton.value = "Delete";
+                
+                tdButtons.appendChild(editButton);
+                tdButtons.appendChild(deleteButton);
+                
+                tr.appendChild(tdButtons);
+                test.appendChild(tr);
+            }
+        }
+    }
+    
+    async function EditStudent(id, data)    
+    {
+        const student = {
+            StudentId: id,
+            naam: "",
+            leeftijd: "",
+        }
+        let trRow = data.parentNode.parentNode;
+        let trNodeList = trRow.childNodes;
+        for (let i = 0; i < trRow.childElementCount; i++)   
+        {
+            for (let j = 0; j < trNodeList[i].childElementCount; j++)
+            {
+                let temp = trNodeList[i].childNodes[j];
+                if (temp.type === "button")  {
+                    break;
+                }
+                if (temp.name === "naam")   {
+                    student.naam = temp.value;
+                }
+                else if (temp.name === "leeftijd")  {
+                    student.leeftijd = Number(temp.value);
+                }
+            }
+        }
+        console.log(JSON.stringify(student))
+        let response = fetch("https://localhost:5001/api/studentapi/" + id, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(student),
+        });
+        await response;
+    }
+    
+    async function DeleteStudent(id)
+    {
+        let response = fetch("https://localhost:5001/api/studentapi/" + id, {
+            method: "DELETE",
+            });
+        await response;
+        LoadStudents();
+    }
+    
+    async function CreateStudent()  {
+        const student = {
+            naam: document.getElementById("newNaam").value,
+            leeftijd: Number(document.getElementById("newLeeftijd").value),
+        }
+        console.log(student);
+        let response = fetch("https://localhost:5001/api/studentapi", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(student)
+        });
+        await response;
+        LoadStudents();
+    }
+</script>
+</head>
+<body>
+<p>
+    <form>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            Naam:
+            <input class="form-control" id="newNaam"/>
+        </div>
+        <div class="form-group">
+            Leeftijd:
+            <input class="form-control" id="newLeeftijd"/>
+        </div>
+        <div class="form-group">
+            <input type="button" value="Create" class="btn btn-primary" onclick="CreateStudent()"/>
+        </div>
+    </form>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Naam
+        </th>
+        <th>
+            Leeftijd
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="studentOverview">
+    <script>
+    LoadStudents();
+    </script>
+    </tbody>
+</table>
+</body>
+</html>
