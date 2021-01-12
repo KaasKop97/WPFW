@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
     <meta name="viewport" content="width=device-width"/>
     <title>Index</title>
@@ -85,7 +85,7 @@
                 }
             }
         }
-        console.log(JSON.stringify(student))
+
         let response = fetch("https://localhost:5001/api/studentapi/" + id, {
             method: "PUT",
             headers: {

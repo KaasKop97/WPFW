@@ -99,7 +99,8 @@ public class Program
     
     static void Opdracht6() // Van welke regisseur is de film 'One Flew over the Cuckoo's Nest'?
     {
-    Console.WriteLine(Movies.Where(m => m.Title.Equals("One Flew Over the Cuckoo's Nest")).First().Director);
+    Console.WriteLine(Movies.First(m => m.Title.Equals("One Flew Over the Cuckoo's Nest")).Director);
+    Movies.Count(m => m.Genre == "Sci-Fi");
     }
     
     static void Opdracht7() // Wat is het 1000e Fibonacci getal?

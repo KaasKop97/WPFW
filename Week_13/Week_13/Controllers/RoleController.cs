@@ -60,7 +60,6 @@ namespace Week_13.Controllers
         [HttpPost]
         public async Task<IActionResult> AddUserToRole(string RoleName)
         {
-            Console.WriteLine(RoleName);
             var GetUser = await _userManager.GetUserAsync(HttpContext.User);
             await _userManager.AddToRoleAsync(GetUser, RoleName);
             return RedirectToAction("Index");
